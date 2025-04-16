@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function getWeatherData(name, lat, lon, country, state) {
         let Forecast_url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${api_key}`;
         let Weather_url = `https://api.openweathermap.org/data/2.5/weather?q=${name}&lat=${lat}&lon=${lon}&appid=${api_key}`;
-        let Air_pullution_url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${api_key}`;
+        let Air_pullution_url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${api_key}`;
 
         let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function getPosition(){
         navigator.geolocation.getCurrentPosition(position => {
             let {latitude, longitude} = position.coords;
-            let Reverse_GEO_url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${api_key}`;
+            let Reverse_GEO_url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${api_key}`;
             
             fetch(Reverse_GEO_url)
                 .then(response => {
