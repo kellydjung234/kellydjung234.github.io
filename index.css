@@ -17,6 +17,7 @@ body{
 
 hr{
     margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .header{
@@ -74,6 +75,13 @@ hr{
     }
 }
 
+/* 
+Grid is main display method of this project 
+It can split the screen into different parts    
+grid-template-columns: repeat(4,1fr);  =>  change the number of columns
+
+*/
+
 .weather_data{
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -90,7 +98,11 @@ hr{
         }
         & p{
             color: #fff;
+            line-height: 1.5;
         }
+    }
+    & .card_footer i{
+        padding-right: 10px;
     }
     & .card_footer p{
         font-size: 14px;
@@ -150,22 +162,12 @@ hr{
                 place-items: center;
                 & p{
                     text-align: center;
+                    font-size: 20px;
+                    text-decoration: underline;
+                    line-height: 1.5;
                 }
             }
             
-            /* & .sunrise_sunset{
-                display: grid;
-                grid-template-columns: repeat(2,1fr);
-                & .item{
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    & h2{
-                        margin-top: 15px;
-                    }
-                }
-            } */
-
             & .hourly_forecast{
                 display: grid;
                 grid-template-columns: repeat(4,1fr);
@@ -173,16 +175,27 @@ hr{
                 & .card{
                     text-align: center;
                 }
+                & p{
+                    font-size: 14px;
+                    text-decoration: underline;
+                    line-height: 1.5;
+
+                }
             }
         
-
             & .card_item{
                 display: flex;
                 justify-content: space-between;
+                & h2{
+                    text-decoration: underline;
+                }
             }
         }
     }
 }
+
+
+/* Zoom Change part (After 660px is Mobile phone part)*/
 
 @media(max-width:1100px){
     .weather_data{

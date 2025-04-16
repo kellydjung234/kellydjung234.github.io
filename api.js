@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let pressureVal = document.getElementById("pressureVal");
     let visibilityVal = document.getElementById("visibilityVal");
     let wind_speedVal = document.getElementById("wind_speedVal");
+    let CloudinessVal = document.getElementById("CloudinessVal");
     let feels_likeVal = document.getElementById("feels_likeVal");
 
     // VAL Part
@@ -33,15 +34,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // API Connection 
+    /*
+        Source page of API KEY
+        Forecast_url: https://openweathermap.org/forecast5
+        Weather_url: https://openweathermap.org/current
+        Air_pullution_url: https://openweathermap.org/api/air-pollution
+    */
     function getWeatherData(name, lat, lon, country, state) {
         let Forecast_url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${api_key}`;
         let Weather_url = `https://api.openweathermap.org/data/2.5/weather?q=${name}&lat=${lat}&lon=${lon}&appid=${api_key}`;
-        let Air_pullution_url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${api_key}`;
+        let Air_pullution_url = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${api_key}`;
 
         let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         
-        // Now location information    
+        // fetch part
+        /*
+            In this fetch part:
+            .response and .catch are used to handle the response and error respectively. (DO NOT NEED TO CHANGE!!!) 
+            Only .then(data => { }) part is the main part to get data from API. (You Can change this part!!!)
+        */
 
         fetch(Air_pullution_url)
             .then(response => {
@@ -51,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return response.json();
             })
             .then(data => {
-                let {co, no, no2, o3, so2, pm10, nh3} = data.list[0].components;
+                let {co, no, no2, o3, so2, pm2_5, pm10, nh3} = data.list[0].components;
                 
                 air_quality_card.innerHTML = `
                         <div class="card_head">
@@ -60,6 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                         <div class="air_indices">
                             <i class="fa-solid fa-wind fa-3x"></i>
+                            <div class="item">
+                                <p>PM2.5</p>
+                                <h2>${pm2_5}</h2>
+                            </div>
                             <div class="item">
                                 <p>PM10</p>
                                 <h2>${pm10}</h2>
@@ -90,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>    
                         </div>
                 `;
-
                 console.log(data);
             })
             .catch(error => {
@@ -130,13 +146,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 let {humidity, pressure, feels_like} = data.main;
                 let visibility = data.visibility;
                 let wind_speed = data.wind.speed;
+                let Cloudiness = data.clouds.all;
 
                 humidityVal.innerHTML = `${humidity}%`;
                 pressureVal.innerHTML = `${pressure} hPa`;
                 visibilityVal.innerHTML = `${visibility / 1000} km`;
                 wind_speedVal.innerHTML = `${wind_speed} m/s`;
                 feels_likeVal.innerHTML = `${(feels_like - 273.15).toFixed(2)} &deg;C`;
-
+                CloudinessVal.innerHTML = `${Cloudiness}%`;
             })
             .catch(error => {
                 console.error("There has been a problem with your fetch operation:", error);
@@ -198,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>                    
                     `;
                 }
-                console.log(fivedays);
+                // console.log(fivedays); // debugging purpose
 
             })
             .catch(error => {
@@ -208,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.getWeatherData = getWeatherData; // Expose the function to the global
 
 
+    // get weather data by city name
     function fetchweather(cityName) {
         const GEO_url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${api_key}`;
         fetch(GEO_url)
@@ -218,22 +236,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 let { name } = data;
                 let { lat, lon } = data.coord;
                 let country = data.sys.country; 
                 let state = ""; 
                 getWeatherData(name, lat, lon, country, state);
+                // console.log(data); debugging purpose
+                // console.log(name, lat, lon, country, state); debugging purpose
+                // getWeatherData is the main function to get weather data(Upper side!!!)
             })
             .catch(error => {
                 console.error("There has been a problem with your fetch operation:", error);
             });
     }
 
+
+    // Get location from browser(Safari Cannot use this, since not https)
     function getPosition(){
         navigator.geolocation.getCurrentPosition(position => {
             let {latitude, longitude} = position.coords;
-            let Reverse_GEO_url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${api_key}`;
+            let Reverse_GEO_url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${api_key}`;
             
             fetch(Reverse_GEO_url)
                 .then(response => {
