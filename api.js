@@ -28,6 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
         let cityName =  document.getElementById("city_input").value;
         if (cityName) {
             fetchweather(cityName);
+            // Track search event
+            gtag('event', 'search_city', {
+                'event_category': 'User Interaction',
+                'event_label': cityName
+            });
         }
         else{
             console.log("City name is empty");
@@ -255,6 +260,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function getPosition(){
         navigator.geolocation.getCurrentPosition(position => {
             let {latitude, longitude} = position.coords;
+
+                // Track location access
+            gtag('event', 'get_location', {
+                'event_category': 'Weather App',
+                'event_label': `Lat: ${latitude}, Lon: ${longitude}`
+            });
+            
             let Reverse_GEO_url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${api_key}`;
             
             fetch(Reverse_GEO_url)
