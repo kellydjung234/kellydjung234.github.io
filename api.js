@@ -259,15 +259,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Get location from browser(Safari Cannot use this, since not https)
     function getPosition(){
+        // Track location button click event
+        gtag('event', 'click_location_button', {
+            'event_category': 'User Interaction',
+            'event_label': 'Current Location Button Clicked'
+        });
+
         navigator.geolocation.getCurrentPosition(position => {
             let {latitude, longitude} = position.coords;
 
-            // Track location access
-            gtag('event', 'get_location', {
+
+            // track successful location retrieval event
+            gtag('event', 'get_location_success', {
                 'event_category': 'Weather App',
                 'event_label': `Lat: ${latitude}, Lon: ${longitude}`
             });
-
 
             let Reverse_GEO_url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${api_key}`;
             
@@ -280,6 +286,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
                 .then(data => {
                     let { name, country, state } = data[0];
+
+                    // change to city name
+                    gtag('event', 'location_resolved', {
+                        'event_category': 'Weather App',
+                        'event_label': `City: ${name}, State: ${state}, Country: ${country}`
+                    });
+                    
                     fetchweather(state);
                 })
                 .catch(error => {
