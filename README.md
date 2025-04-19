@@ -48,6 +48,7 @@ The user can also use the current location button to get the user's location by 
 (Please allow the browsers get the GPS first)
 >[!IMPORTANT]
 >Please allow the browser get the GPS
+>
 >![image](https://github.com/kellydjung234/kellydjung234.github.io/blob/main/allow_location.png)
 
 
