@@ -52,8 +52,9 @@ The user can also use the current location button to get the user's location by 
 >![image](https://github.com/kellydjung234/kellydjung234.github.io/blob/main/allow_location.png)
 
 
-### change theme 
+### Change theme 
 The user can change the teme by the theme button 
+
 ![image](https://github.com/kellydjung234/kellydjung234.github.io/blob/main/Pasted%20image%2020250419112715.png)
 
 # Credits
