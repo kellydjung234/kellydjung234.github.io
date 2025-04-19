@@ -33,13 +33,13 @@ LUheather strives to provide real-time city weather reports with the dark and li
 ### Shearch bar
 The user can use the search bar to search for the city weather
 
-![image](https://github.com/kellydjung234/kellydjung234.github.io/blob/main/Pasted%20image%2020250419112815.png)
+![image](https://github.com/kellydjung234/kellydjung234.github.io/blob/main/search_bar.png)
 
 
 After entering the city and pushing the Search button
 
 
-![image](https://github.com/kellydjung234/kellydjung234.github.io/blob/main/Pasted%20image%2020250419112821.png)
+![image](https://github.com/kellydjung234/kellydjung234.github.io/blob/main/search_button.png)
 
 
 ### Current Location
@@ -55,15 +55,16 @@ The user can also use the current location button to get the user's location by 
 ### Change theme 
 The user can change the teme by the theme button 
 
-![image](https://github.com/kellydjung234/kellydjung234.github.io/blob/main/Pasted%20image%2020250419112715.png)
+![image](https://github.com/kellydjung234/kellydjung234.github.io/blob/main/theme_change_button.png)
 
 # Credits
 
 [OpenWeatherMap](https://openweathermap.org/)
+[fontawesome](https://fontawesome.com/)
 
 # Contributors
 - LawLUO
-- OIjai
+- Louis chan 
 - Kelly Djung 
 - Chris Kwan
 - Paco Leung 
