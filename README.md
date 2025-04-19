@@ -60,6 +60,7 @@ The user can change the teme by the theme button
 # Credits
 
 [OpenWeatherMap](https://openweathermap.org/)
+
 [fontawesome](https://fontawesome.com/)
 
 # Contributors
