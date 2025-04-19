@@ -32,9 +32,9 @@ LUheather strives to provide real-time city weather reports with the dark and li
 
 ### Shearch bar
 The user can use the search bar to search for the city weather
-![[Pasted image 20250419112815.png]]
+![image](https://github.com/kellydjung234/kellydjung234.github.io/blob/main/Pasted%20image%2020250419112815.png)
 After entering the city and pushing the Search button
-![[Pasted image 20250419112821.png]]
+![image](https://github.com/kellydjung234/kellydjung234.github.io/blob/main/Pasted%20image%2020250419112815.png)
 
 ### Current Location
 The user can also use the current location button to get the user's location by GPS
@@ -46,7 +46,7 @@ The user can also use the current location button to get the user's location by 
 
 ### change theme 
 The user can change the teme by the theme button 
-![[Pasted image 20250419112715.png]]
+![image](https://github.com/kellydjung234/kellydjung234.github.io/blob/main/Pasted%20image%2020250419112715.png)
 
 # Credits
 
